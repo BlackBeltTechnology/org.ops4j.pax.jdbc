@@ -3,7 +3,7 @@
 
     <groupId>org.ops4j.pax</groupId>
     <artifactId>jdbc</artifactId>
-    <version>0.10.0-SNAPSHOT</version>
+    <version>0.10.0-judo</version>
     <packaging>pom</packaging>
 
     <parent>
@@ -366,6 +366,26 @@
                 </plugin>
             </plugins>
         </pluginManagement>
+
+         <plugins>
+            <!-- To ignore nexus staging -->
+            <plugin>
+                <groupId>org.sonatype.plugins</groupId>
+                <artifactId>nexus-staging-maven-plugin</artifactId>
+                <version>1.6.5</version>
+                <extensions>true</extensions>
+                <executions>
+                    <execution>
+                        <id>default-deploy</id>
+                        <phase>none</phase>
+                        <goals>
+                            <goal>deploy</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+ 
     </build>
 
     <licenses>
@@ -423,6 +443,7 @@
         </developer>
     </developers>
 
+<!--
     <repositories>
         <repository>
             <id>apache-snapshots</id>
@@ -435,5 +456,15 @@
             </snapshots>
         </repository>
     </repositories>
+-->
+
+    <distributionManagement>
+        <repository>
+            <id>blackbelt-nexus-distribution</id>
+            <name>blackbelt-nexus-distribution</name>
+            <url>https://nexus.blackbelt.cloud/repository/maven-3rdparty</url>
+        </repository>
+    </distributionManagement>
+
 
 </project>
